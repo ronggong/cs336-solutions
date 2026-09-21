@@ -1,0 +1,33 @@
+model:
+  vocab_size: 10000
+  d_model: 512
+  num_heads: 16 
+  d_ff: 1344
+  context_length: &context 256
+  theta: 10000
+  num_layers: 4
+  device: "cuda"
+  dtype: bfloat16
+optimizer:
+  lr: 2.0e-3
+  weight_decay: 0.01
+  betas: [0.9, 0.95]
+  eps: 1.0e-8
+lr_scheduler:
+  tw: 1000
+  tc: 20000
+  amax: 2.0e-3
+  amin: 1.0e-5
+data_loader:
+  batch_size: 1024 #256 #128
+  context_length: *context
+train:
+  train_loss_steps: 100
+  valid_steps: 250
+  checkpointing_steps: 1000
+  steps: 20000
+  grad_clip: 4
+decode:
+  method: "top-p"
+  p: 0.9
+  temperature: 0.9

@@ -4,6 +4,19 @@ import time
 from .adapters import run_train_bpe
 from .common import FIXTURES_PATH, gpt2_bytes_to_unicode
 
+def test_rev_pair():
+    """
+    Ensure RevPair class pop lexicographically greatest pair
+    """
+    from cs336_basics.bpe import RevPair
+    import heapq
+
+    freq_heap = []
+    heapq.heappush(freq_heap, (-1, RevPair((b"z", b"a"))))
+    heapq.heappush(freq_heap, (-1, RevPair((b"a", b"z"))))
+
+    assert heapq.heappop(freq_heap)[1].pair == (b"z", b"a")
+    assert heapq.heappop(freq_heap)[1].pair == (b"a", b"z")
 
 def test_train_bpe_speed():
     """

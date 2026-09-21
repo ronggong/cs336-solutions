@@ -161,3 +161,10 @@ cython_debug/
 
 .ruff_cache/
 *.zip
+
+_*/
+.vscode/
+aml/
+data_2000.txt
+tiny_2000.txt
+download_data.sh
